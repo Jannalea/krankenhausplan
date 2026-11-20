@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barmbek-Leistungsgruppen Hamburg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Asklepios CI: Petrol #007377 (Primär), Magenta #bb16a3 (Sekundär), Inter Regular/Bold, flache Formen ohne Schatten */
+:root{color-scheme:light;--bg:#ffffff;--card:#ffffff;--ink:#14191a;--mut:#46595b;--sub:#7a8d8e;--line:#dde5e5;--land:#ffffff;--sea:#eef2f2;--water:#c6dedf;--acc:#bb16a3;--dot:#007377;--dotink:#ffffff;--off:#c3cfd0;--petrol:#007377;--petrol7:#005a5d;--navy:#254a5d;--tint:#e0f0f0;--mtint:#fbeef9}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,Arial,sans-serif;overflow-x:clip}
+.band{padding:clamp(20px,3vw,40px) max(4vw,16px)}
+.wrap{max-width:1280px;margin:0 auto}
+.hero{background:var(--petrol);color:#fff;padding:18px max(4vw,16px)}
+.hero{position:relative}
+.stoerer{position:relative;margin:-8px 0 -44px;flex:none;width:112px;height:112px;border-radius:50%;background:#bb16a3;color:#fff;transform:rotate(7deg);display:flex;align-items:center;justify-content:center;text-align:center;font-size:14px;font-weight:700;line-height:1.2;padding:12px;text-decoration:none;z-index:3;transition:background .15s ease-out}
+.stoerer:hover{background:#9a1187}.stoerer:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.hright{display:flex;align-items:center;gap:36px;flex:none}
+@media(max-width:900px){.stoerer{width:88px;height:88px;font-size:12px;padding:8px;margin:0}}
+.hrow{display:flex;align-items:center;justify-content:space-between;gap:24px}.hero .logo{height:34px;width:auto;flex:none}
+h1{font-size:clamp(22px,2.4vw,30px);line-height:1.1;font-weight:700;margin:0 0 4px;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:22px;line-height:1.2;margin:0 0 6px;font-weight:700;color:var(--petrol)}
+.lede{color:rgba(255,255,255,.85);margin:0;font-size:14px}
+.kpis{display:flex;flex-wrap:wrap;gap:10px 36px;margin-top:22px}
+.kpi b{display:block;font-size:30px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi span{color:rgba(255,255,255,.8);font-size:14px}
+.ctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 14px}
+select,button{font:inherit;font-size:16px;color:var(--ink);background:#fff;border:1px solid #c3cfd0;border-radius:8px;min-height:44px;padding:0 12px}
+button{cursor:pointer;background:var(--petrol);color:#fff;border-color:var(--petrol);font-weight:600}
+button:hover{background:var(--petrol7)}
+.zoom button{background:#fff;color:var(--petrol);border-color:#c3cfd0}
+.zoom button:hover{background:var(--tint)}
+select:focus-visible,button:focus-visible,tr:focus-visible{outline:2px solid var(--petrol);outline-offset:2px}
+.grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:20px;align-items:start}
+.mapbox{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;position:relative}
+.fig{position:relative;height:min(74vh,660px);min-height:380px;touch-action:none;cursor:grab}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.zoom{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px}
+.zoom button{width:44px;padding:0;font-size:20px;line-height:1}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;padding:10px 14px;border-top:1px solid var(--line);font-size:13px;color:var(--mut)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:-2px;margin-right:6px;background:var(--dot)}
+.legend i.o{background:var(--acc)}.legend i.g{background:var(--off)}
+.panel{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--petrol);border-radius:8px;padding:18px;max-height:calc(min(74vh,660px) + 46px);overflow:auto}
+.sub{color:var(--mut);font-size:14px;margin:0 0 14px}
+.grp{margin:16px 0 4px;font-size:13px;color:var(--petrol);font-weight:700}
+.row{display:grid;grid-template-columns:44px minmax(0,1fr) 64px;gap:8px;align-items:center;padding:5px 0;border-bottom:1px solid var(--line);font-size:14px}
+.row code{font:600 13px Inter,Arial,sans-serif;color:var(--petrol)}
+.row .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{height:4px;background:var(--line);border-radius:2px;margin-top:3px}.bar>span{display:block;height:100%;background:var(--dot);border-radius:2px}
+.row.me .bar>span{background:var(--acc)}.row.me{font-weight:700;color:var(--acc)}
+.row.click{cursor:pointer}.row.click:hover{background:var(--tint)}
+.miss{font-size:13px;color:var(--mut);margin-top:12px}
+.miss code{font:inherit;display:inline-block;border:1px solid var(--line);border-radius:4px;padding:0 5px;margin:2px 2px 0 0}
+.hint{font-size:13px;color:var(--mut);margin-top:14px}
+.scroll{overflow-x:auto}
+table.mx{margin-right:190px;border-collapse:separate;border-spacing:0;font-size:13px;background:var(--card)}
+.mx th,.mx td{border-bottom:1px solid var(--line);padding:0;text-align:center}
+.mx thead th{position:relative;background:transparent;overflow:visible;font-weight:400;color:var(--mut);height:190px;vertical-align:bottom;padding:0 0 4px;white-space:nowrap}
+.mx thead th.r{border-bottom:1px solid var(--line)}.mx thead th.r>div{position:relative;z-index:2;width:28px;transform:translate(14px,-4px) rotate(-45deg);transform-origin:left bottom}.mx thead th.r>div>span{display:inline-block;padding:0 4px;border-bottom:1px solid var(--line)}.mx thead th.r:last-child>div{width:46px}
+.mx thead th b{color:var(--petrol)}
+.mx th.h,.mx td.h{position:sticky;left:0;background:var(--card);text-align:left;padding:6px 12px 6px 10px;white-space:nowrap;z-index:1;border-right:1px solid var(--line)}
+.mx td.c{width:28px;height:32px}.mx td.c:last-child{width:46px;padding:0 6px}
+.mx td.c i{display:block;width:18px;height:18px;margin:auto;border-radius:3px;background:var(--dot)}
+.mx td.c i.icu{background:none;font:700 11px Inter,Arial,sans-serif;font-style:normal;line-height:18px;color:var(--petrol)}
+.mx tr.me td{background:var(--mtint)}.mx tr.me td.c i{background:var(--acc)}.mx tr.me td.h{color:var(--acc);font-weight:700}
+.mx td.k{padding:0 10px;font-variant-numeric:tabular-nums;font-weight:700;color:var(--petrol)}
+.mx tbody tr{cursor:pointer}.mx tbody tr:hover td{background:var(--tint)}
+.mx td.gs{border-left:1px solid #c3cfd0}
+.note{font-size:13px;color:var(--sub);max-width:90ch}
+footer{border-top:4px solid var(--petrol)}
+svg text{font-family:Inter,Arial,sans-serif}
+@media(max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}.panel{max-height:none}}
+@media(max-width:600px){.hrow{flex-direction:column-reverse;align-items:flex-start;gap:12px}.hright{width:100%;justify-content:space-between;flex-direction:row-reverse}.hero .logo{height:26px}.fig{height:62vh}.kpi b{font-size:24px}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap hrow">
+<div class="htext">
+<h1>Barmbek-Leistungsgruppen im Hamburger Vergleich</h1>
+<p class="lede">Nominelle Zuweisung zum 01.01.2027 mit vollstationären Fallzahlen · nur Leistungsgruppen der Asklepios Klinik Barmbek, ohne LG01 und LG14</p>
+</div>
+<div class="hright"><a class="stoerer" href="https://www.buergerschaft-hh.de/parldok/lib/pdfjs/web/viewer.html?locale=de-DE&amp;file=https%3A%2F%2Fwww.buergerschaft-hh.de%2Fparldok%2Fdokument%2F105949%2F23_06008_krankenhausplan_2027_der_freien_und_hansestadt_hamburg#page=109&amp;pagemode=none" target="_blank" rel="noopener">zum Krankenhaus&shy;plan</a><svg class="logo" viewBox="0 0 1482.6 397.301" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Asklepios"><g><path d="M1043.09 129.163 1005.42 129.163 1005.42 267.367 1034.57 267.367 1034.57 233.708 1043.09 233.708C1080.93 233.708 1103.51 214.212 1103.51 181.537 1103.51 148.761 1080.93 129.163 1043.09 129.163ZM1042.31 207.928 1034.57 207.928 1034.57 154.977 1042.31 154.977C1063.67 154.977 1073.59 163.4 1073.59 181.537 1073.59 199.539 1063.67 207.928 1042.31 207.928Z" fill="#FFFFFF"/><path d="M1123.76 129.293 1152.22 129.293 1152.22 267.525 1123.76 267.525 1123.76 129.293Z" fill="#FFFFFF"/><path d="M1175.71 198.408C1175.71 157.55 1207.42 127.464 1247.26 127.464 1287.1 127.464 1318.82 157.55 1318.82 198.408 1318.82 239.268 1287.1 269.355 1247.26 269.355 1207.42 269.355 1175.71 239.268 1175.71 198.408ZM1289.54 198.408C1289.54 172.592 1272.47 152.873 1247.26 152.873 1222.05 152.873 1204.98 172.592 1204.98 198.408 1204.98 224.226 1222.05 243.943 1247.26 243.943 1272.47 243.943 1289.54 224.226 1289.54 198.408Z" fill="#FFFFFF"/><path d="M1380.76 269.355C1377.3 269.355 1374.25 269.252 1371.44 269.012 1353.42 267.504 1342.59 260.925 1333.06 245.54 1338.51 241.805 1344.47 237.693 1350.64 233.445L1354.89 230.498C1358.83 237.591 1364.49 242.491 1371.3 244.684 1373.87 245.506 1376.62 245.917 1379.46 245.917 1386.42 245.917 1398.17 242.559 1398.17 230.018 1398.17 226.9 1397.62 224.57 1396.46 222.617 1394.13 218.642 1389.02 216.004 1379.84 212.303 1378.26 211.652 1376.51 210.967 1374.63 210.247L1371.85 209.151C1363.36 205.861 1356.47 202.811 1350.64 198.768 1345.19 195.033 1341.22 190.819 1338.51 185.953 1335.39 180.265 1333.85 173.652 1333.85 165.702 1333.85 142.607 1351.02 127.668 1377.61 127.668 1381.14 127.668 1384.46 127.907 1387.48 128.422 1401.18 130.546 1411.84 137.365 1420.92 149.803L1412.8 155.422C1408.59 158.335 1404.23 161.35 1399.85 164.4 1396.59 159.123 1391.66 154.84 1386.24 152.647 1383.23 151.413 1380.08 150.762 1376.89 150.762 1361.23 150.762 1360.44 162.139 1360.44 164.434 1360.44 166.422 1360.82 168.272 1361.54 169.882 1364.01 175.605 1370.48 178.654 1377.06 181.053 1377.37 181.19 1377.71 181.293 1378.02 181.396L1395.26 187.7C1399.5 189.242 1403.72 191.333 1407.49 193.8 1411.98 196.678 1415.68 200.002 1418.18 203.462 1418.42 203.771 1419.07 204.696 1420 206.272 1422.12 209.836 1425.68 217.306 1425.68 227.071 1425.68 232.999 1425.68 251.091 1406.63 262.57 1398.96 267.23 1387.82 269.355 1380.76 269.355Z" fill="#FFFFFF"/><path d="M679.997 191.723 725.51 129.169 761.045 129.16 712.071 196.234 764.477 267.391 730.116 267.399 694.187 217.22 679.997 235.213 679.997 267.412 651.537 267.42 651.537 129.188 679.997 129.181 679.997 191.723Z" fill="#FFFFFF"/><path d="M473.811 135.15 528.095 267.525 497.257 267.525 490.754 251.872 434.648 251.872 428.143 267.525 397.301 267.525 451.588 135.15C455.664 125.213 469.736 125.213 473.811 135.15ZM481.198 228.088 462.7 179.3 444.202 228.088 481.198 228.088Z" fill="#FFFFFF"/><path d="M584.872 269.355C581.411 269.355 578.362 269.252 575.552 269.012 557.529 267.504 546.701 260.925 537.175 245.54 542.623 241.805 548.585 237.693 554.753 233.445L559.002 230.498C562.943 237.591 568.596 242.491 575.415 244.684 577.985 245.506 580.726 245.917 583.57 245.917 590.526 245.917 602.279 242.559 602.279 230.018 602.279 226.9 601.731 224.57 600.566 222.617 598.236 218.642 593.13 216.004 583.947 212.303 582.371 211.652 575.963 209.151 575.963 209.151 567.466 205.861 560.578 202.811 554.753 198.768 549.305 195.033 545.33 190.819 542.623 185.953 539.505 180.265 537.963 173.652 537.963 165.702 537.963 142.607 555.13 127.668 581.72 127.668 585.249 127.668 588.573 127.908 591.588 128.422 605.294 130.546 615.951 137.365 625.031 149.803L616.91 155.422C612.696 158.335 608.344 161.351 603.958 164.4 600.703 159.123 595.768 154.84 590.355 152.647 587.339 151.414 584.187 150.762 581 150.762 565.341 150.762 564.553 162.139 564.553 164.434 564.553 166.422 564.93 168.272 565.649 169.883 568.117 175.605 574.593 178.654 581.172 181.053 581.48 181.19 581.823 181.293 582.131 181.396L599.367 187.701C603.615 189.243 607.83 191.333 611.599 193.8 616.088 196.678 619.788 200.002 622.29 203.462 622.53 203.771 623.181 204.696 624.106 206.272 626.23 209.836 629.794 217.306 629.794 227.071 629.794 232.999 629.794 251.091 610.742 262.57 603.067 267.23 591.931 269.355 584.872 269.355Z" fill="#FFFFFF"/><path d="M782.873 129.293 811.331 129.293 811.331 242.522 867.148 242.522 867.148 267.525 782.873 267.525 782.873 129.293Z" fill="#FFFFFF"/><path d="M890.089 129.16 977.111 129.16 977.111 153.876 918.22 153.876 918.22 187.772 963.339 187.772 963.339 211.884 918.22 211.884 918.22 242.892 979.923 242.892 979.923 267.607 890.089 267.607Z" fill="#FFFFFF"/></g><g><circle cx="198.651" cy="198.651" r="141.732" fill="#FFFFFF"/><path d="M190.644 271.632 190.644 320.038C190.644 324.467 194.23 328.053 198.659 328.053 203.071 328.053 206.657 324.467 206.657 320.038L206.657 282.688 190.644 271.632Z" fill="#007377"/><path d="M154.122 223.748C154.122 232.391 162.385 239.695 165.921 242.439 165.938 242.439 166.004 242.521 216.424 277.341L216.424 303.634C219.996 302.645 243.179 294.78 243.179 279.093 243.179 269.838 233.578 262.005 230.636 259.84 230.355 259.625 189.95 231.73 180.877 225.467L180.877 199.207C179.096 199.62 154.122 207.546 154.122 223.748Z" fill="#007377"/><path d="M190.644 188.045 190.644 220.071 206.657 231.111 206.657 199.084Z" fill="#007377"/><path d="M154.122 140.136C154.122 148.779 162.385 156.084 165.921 158.827 165.938 158.827 166.004 158.91 216.424 193.729L216.424 220.022C219.996 219.033 243.179 211.169 243.179 195.481 243.179 186.227 233.578 178.394 230.636 176.229 230.355 176.014 189.95 148.118 180.877 141.855L180.877 115.596C179.096 116.008 154.122 123.935 154.122 140.136Z" fill="#007377"/><path d="M216.424 134.088C231.121 130.905 238.912 126.916 239.99 122.057 240.878 118.052 238.081 114.86 232.974 110.668 229.348 107.693 227.441 104.332 216.424 106.655L216.424 134.088Z" fill="#007377"/><path d="M184.996 83.4524C184.996 75.9112 191.11 69.7979 198.651 69.7979 206.192 69.7979 212.305 75.9112 212.305 83.4524 212.305 87.9986 210.074 92.0147 206.657 94.4965L206.657 147.523 190.644 136.468 190.644 94.4965C187.227 92.0147 184.996 87.9986 184.996 83.4524Z" fill="#007377"/></g></svg></div>
+</div></header>
+<main class="band"><div class="wrap">
+<div class="ctrl">
+<label for="lgsel" class="sub" style="margin:0">Leistungsgruppe</label>
+<select id="lgsel"></select>
+<button id="reset" type="button">Zurücksetzen</button>
+</div>
+<div class="grid">
+<div class="mapbox">
+<div class="fig" id="fig"><svg id="map" role="img" aria-label="Karte Hamburg mit Krankenhausstandorten"></svg>
+<div class="zoom"><button id="zin" type="button" aria-label="Hineinzoomen">+</button><button id="zout" type="button" aria-label="Herauszoomen">−</button></div></div>
+<div class="legend" id="legend"></div>
+</div>
+<aside class="panel" id="panel" aria-live="polite"></aside>
+</div>
+<section style="margin-top:44px">
+<h2>Alle Standorte im Überblick</h2>
+<p class="sub">Petrolfarbenes Feld = Leistungsgruppe zugewiesen, kräftiger = mehr Fälle (Fallzahl beim Überfahren). Intensivmedizin: M = Mindestvoraussetzung, K = Komplex, H = Hochkomplex. Zeile anklicken für Details.</p>
+<div class="scroll"><table class="mx" id="mx"></table></div>
+</section>
+</div></main><footer class="band"><div class="wrap"><p class="note" style="margin:0">Quelle: Tabellen 8–11 „Nominelle Zuweisung der Leistungsgruppen mit nachrichtlicher Ausweisung vollstationärer Fallzahlen“. Die Schwerpunkt-Stichworte unter den Namen sind aus den größten Fallzahlen über alle Leistungsgruppen der Tabellen 8–11 abgeleitet, also auch aus LG, die Barmbek nicht hat. Standorte sind auf Adressebene ungefähr verortet; Elbe und Alster sind schematisch gezeichnet. Wilhelmstift-Neonatologien und die PNZ Schnelsen liegen an den Häusern Wandsbek, Marienkrankenhaus bzw. Albertinen.</p></div></footer>
+<script>
+{
+const D={"geo": {"hh": "M441.6,83.5 L441.4,76.2 L449.0,76.1 L456.3,61.3 L471.5,61.2 L479.3,68.5 L502.2,75.8 L509.6,68.4 L509.5,61.0 L554.5,38.6 L554.2,23.8 L569.4,23.8 L569.5,31.1 L577.1,31.1 L584.8,38.5 L592.4,38.4 L592.9,60.6 L578.2,82.8 L570.7,82.8 L570.5,75.4 L563.1,82.8 L548.1,90.3 L548.3,97.7 L555.8,97.6 L548.7,119.8 L541.5,134.6 L534.0,142.0 L526.5,142.1 L534.2,149.4 L549.4,149.3 L557.3,164.1 L572.5,164.0 L572.8,178.7 L580.4,178.7 L595.9,193.4 L603.8,208.1 L589.0,222.9 L604.3,230.2 L611.8,230.2 L627.1,237.5 L619.6,237.5 L619.7,244.9 L627.3,244.8 L627.5,252.2 L597.6,267.1 L590.2,274.5 L590.4,281.9 L597.9,281.9 L598.5,304.0 L591.1,311.4 L598.8,318.8 L606.7,333.5 L561.2,333.7 L561.0,326.4 L553.8,341.2 L546.1,341.2 L546.7,363.3 L539.0,363.4 L539.2,370.8 L554.6,378.0 L554.9,392.8 L540.1,407.6 L548.2,429.7 L555.6,422.3 L563.2,422.3 L563.6,437.0 L556.1,444.4 L556.3,451.8 L564.1,459.1 L579.5,466.4 L587.3,473.7 L602.5,473.6 L617.4,458.8 L625.2,466.1 L625.5,480.9 L633.3,488.2 L633.5,495.6 L625.9,495.6 L626.0,503.0 L633.8,510.3 L641.4,510.3 L648.9,502.9 L649.6,532.3 L665.0,539.6 L672.8,547.0 L687.9,546.9 L688.5,569.0 L704.1,583.6 L711.6,583.6 L727.1,598.2 L719.8,605.6 L727.6,613.0 L742.4,612.9 L741.9,598.1 L756.6,598.0 L749.9,620.2 L750.0,627.6 L735.5,627.7 L735.7,635.0 L712.8,650.2 L697.5,657.8 L689.8,657.9 L682.1,665.5 L674.5,665.5 L674.4,673.0 L658.9,703.0 L651.3,710.6 L628.4,710.8 L613.1,703.6 L567.1,704.1 L544.0,682.0 L543.9,674.5 L528.5,659.8 L528.4,652.4 L497.7,652.7 L482.2,638.0 L482.1,623.1 L474.4,615.7 L466.6,600.9 L458.8,593.6 L443.4,586.3 L420.3,571.7 L412.7,586.6 L412.8,594.1 L420.5,601.4 L412.9,609.0 L389.9,609.2 L389.8,601.8 L374.6,616.8 L382.3,616.7 L397.7,631.5 L382.4,639.1 L374.7,639.2 L359.4,646.8 L351.7,646.9 L351.8,661.8 L336.4,669.4 L328.8,669.5 L328.7,654.6 L305.6,647.4 L290.2,640.1 L290.3,655.0 L275.0,655.2 L267.5,662.8 L252.3,670.5 L244.7,670.6 L244.6,663.1 L259.7,648.0 L252.0,640.6 L267.2,625.5 L259.4,603.2 L236.2,581.0 L191.0,626.5 L191.2,641.4 L183.5,626.6 L160.3,597.0 L129.8,575.1 L122.3,575.2 L122.0,560.2 L114.5,560.4 L113.8,522.9 L121.2,515.3 L121.1,507.8 L105.9,508.0 L98.6,515.7 L90.9,508.3 L98.3,500.7 L83.1,493.5 L75.4,486.1 L74.8,456.1 L89.9,455.8 L89.8,448.4 L74.4,433.6 L74.2,411.3 L81.8,411.2 L81.6,388.9 L73.9,389.0 L28.1,382.0 L35.4,367.2 L35.3,359.8 L42.7,345.0 L42.6,337.7 L34.9,330.5 L49.9,315.6 L49.5,293.5 L64.7,293.3 L64.5,278.6 L56.8,271.4 L64.3,263.9 L64.0,249.2 L71.5,241.8 L79.1,241.6 L79.4,263.7 L102.5,278.1 L110.1,278.0 L117.8,285.3 L102.6,285.4 L102.7,292.8 L110.6,307.5 L126.0,314.7 L141.6,329.4 L149.2,329.3 L164.3,321.8 L156.7,321.9 L164.0,307.0 L179.3,306.9 L186.8,299.5 L186.6,292.1 L201.6,277.2 L201.5,269.8 L216.5,254.9 L224.1,254.9 L224.0,247.5 L231.4,240.1 L231.3,232.7 L238.8,225.2 L238.6,217.9 L246.3,217.8 L245.8,195.6 L261.0,188.1 L291.6,195.3 L299.2,195.2 L314.6,202.5 L345.1,202.3 L344.8,187.5 L352.4,187.5 L352.3,180.1 L344.3,165.4 L359.0,135.8 L412.2,135.4 L420.0,142.7 L442.8,142.6 L442.2,113.1 L449.5,98.2 L456.9,90.8 L441.7,90.9 L449.2,83.5 L441.6,83.5Z", "elbe": ["M434.2,593.4 L430.1,564.0 L426.1,488.8 L419.4,461.2 L405.7,451.6 L352.7,435.4 L297.1,431.0 L237.6,429.0 L150.2,420.4 L118.8,408.0 L71.3,394.0 L23.8,382.0 L-47.5,364.0", "M434.2,593.4 L429.9,588.2 L411.4,570.6 L391.3,563.2 L329.5,557.0 L315.2,549.2 L283.6,525.8 L250.2,508.0 L207.1,475.0 L169.0,468.8 L155.2,464.0 L141.4,439.2 L118.8,408.0", "M831.8,672.6 L772.8,656.2 L695.2,655.0 L684.2,658.8 L672.4,666.2 L645.9,701.6 L643.3,707.2 L578.1,711.6 L558.1,707.2 L538.9,693.0 L526.2,674.8 L512.5,659.2 L488.5,652.6 L474.0,641.4 L434.2,593.4"], "aussen": "M357.1,403.0 L363.6,400.0 L369.5,392.0 L371.3,382.0 L370.1,372.0 L367.2,365.0 L363.6,366.0 L360.6,374.0 L356.5,382.0 L352.9,392.0 L353.5,400.0Z", "binnen": "M345.2,415.0 L352.3,411.0 L353.5,407.0 L349.3,405.0 L345.2,409.0Z", "alster": "M365.4,365.6 L366.0,354.0 L361.2,340.0 L368.4,326.0 L374.3,308.0 L383.8,290.0 L398.1,270.0 L415.9,250.0 L439.6,220.0 L463.4,180.0", "places": [["Altona", 166.4, 324.0], ["Eimsbüttel", 273.3, 290.0], ["Hamburg-Nord", 392.1, 256.0], ["Wandsbek", 510.9, 270.0], ["Hamburg-Mitte", 463.4, 450.0], ["Harburg", 219.8, 610.0], ["Bergedorf", 659.5, 584.0], ["Elbe", 202.0, 444.0], ["Außenalster", 382.6, 380.0]]}, "hos": [{"n": "01", "name": "Universitätsklinikum Hamburg-Eppendorf", "short": "UKE", "id": 773675, "x": 327.4, "y": 341.0, "lg": {"LG04": 3889, "LG05": 1144, "LG06": 956, "LG09": 891, "LG11": 1671, "LG23": 115, "LG24": 108, "LG25": 41, "LG26": 44, "LG27": 89, "LG29": 98, "LG31": 126, "LG32": 50, "LG33": 173, "LG34": 55, "LG35": 4650, "LG38": 4134, "LG39": 2416, "LG40": 77, "LG41": 305, "LG42": 2851, "LG43": 845, "LG44": 53, "LG45": 17, "LG53": 2428, "LG54": 866, "LG57": 77, "LG64": 3}, "sp": "Universitätsmedizin"}, {"n": "02", "name": "Asklepios Klinik St. Georg", "short": "AK St. Georg", "id": 772681, "x": 376.1, "y": 405.0, "lg": {"LG04": 878, "LG09": 352, "LG11": 1457, "LG23": 61, "LG24": 73, "LG27": 150, "LG53": 1187, "LG54": 638, "LG57": 389, "LG64": 3}, "sp": "Herz / Haut / HNO"}, {"n": "03", "name": "Asklepios Klinik Barmbek", "short": "AK Barmbek", "id": 772584, "x": 402.8, "y": 334.4, "lg": {"LG04": 2189, "LG05": 1468, "LG06": 2333, "LG09": 54, "LG11": 835, "LG23": 168, "LG24": 216, "LG25": 86, "LG26": 58, "LG27": 61, "LG29": 97, "LG31": 138, "LG32": 31, "LG33": 96, "LG34": 37, "LG35": 2886, "LG38": 3262, "LG39": 2284, "LG40": 62, "LG41": 438, "LG42": 2749, "LG43": 397, "LG44": 50, "LG45": 16, "LG53": 2135, "LG54": 926, "LG57": 218, "LG64": 3}, "sp": ""}, {"n": "04", "name": "Schön Klinik Hamburg (Eilbek)", "short": "Schön Klinik", "id": 772530, "x": 415.4, "y": 369.6, "lg": {"LG04": 121, "LG06": 833, "LG11": 743, "LG23": 444, "LG24": 432, "LG25": 103, "LG26": 75, "LG53": 908, "LG57": 50, "LG64": 3}, "sp": "Ortho"}, {"n": "05", "name": "Asklepios Klinik Altona", "short": "AK Altona", "id": 773229, "x": 246.1, "y": 400.8, "lg": {"LG04": 2323, "LG06": 1354, "LG09": 202, "LG11": 1445, "LG27": 130, "LG31": 49, "LG32": 72, "LG33": 57, "LG34": 64, "LG35": 1656, "LG38": 2317, "LG39": 1183, "LG42": 2835, "LG43": 330, "LG53": 1805, "LG54": 817, "LG57": 256, "LG64": 3}, "sp": "Neurochirurgie / Kardio / Geburt"}, {"n": "06", "name": "Asklepios Klinikum Harburg", "short": "AK Harburg", "id": 772901, "x": 307.8, "y": 614.0, "lg": {"LG04": 2247, "LG05": 326, "LG06": 2906, "LG11": 947, "LG27": 129, "LG29": 149, "LG33": 40, "LG34": 30, "LG38": 2806, "LG53": 1648, "LG54": 612, "LG57": 202, "LG64": 3}, "sp": "Pneumo / Thorax / Urologie"}, {"n": "07", "name": "Asklepios Klinik Nord – Heidberg", "short": "AK Nord-Heidberg", "id": 773463, "x": 377.5, "y": 214.6, "lg": {"LG04": 1500, "LG11": 1315, "LG27": 60, "LG33": 40, "LG34": 30, "LG35": 4364, "LG39": 546, "LG42": 1774, "LG43": 318, "LG44": 28, "LG45": 10, "LG53": 1371, "LG54": 764, "LG57": 114, "LG64": 3}, "sp": "Augen / HNO / Kinder"}, {"n": "08", "name": "Asklepios Klinik Wandsbek", "short": "AK Wandsbek", "id": 772924, "x": 459.3, "y": 363.0, "lg": {"LG04": 1133, "LG06": 1244, "LG11": 852, "LG27": 107, "LG38": 1225, "LG39": 907, "LG42": 820, "LG43": 36, "LG53": 1592, "LG54": 786, "LG57": 99, "LG64": 3}, "sp": "Geriatrie / Neuro"}, {"n": "13", "name": "Bundeswehrkrankenhaus Hamburg", "short": "BwK", "id": 771803, "x": 459.8, "y": 328.0, "lg": {"LG04": 200, "LG11": 271, "LG27": 25, "LG38": 1300, "LG53": 509, "LG64": 3}, "sp": "Chirurgie / Urologie / HNO"}, {"n": "14", "name": "Albertinen Krankenhaus", "short": "Albertinen", "id": 773271, "x": 276.9, "y": 266.0, "lg": {"LG04": 2264, "LG05": 121, "LG11": 1022, "LG23": 362, "LG24": 372, "LG25": 50, "LG26": 35, "LG27": 69, "LG33": 33, "LG34": 34, "LG38": 1932, "LG39": 2778, "LG40": 28, "LG41": 173, "LG42": 2796, "LG43": 3, "LG53": 1312, "LG54": 688, "LG57": 74, "LG64": 3}, "sp": "Gyn / Geburt / Ortho"}, {"n": "16", "name": "Altonaer Kinderkrankenhaus – Hauptstandort", "short": "AKK", "id": 773693, "x": 262.6, "y": 416.6, "lg": {"LG29": 2, "LG34": 4, "LG43": 429, "LG44": 67, "LG45": 24, "LG53": 1, "LG64": 3}, "sp": "Kinderklinik"}, {"n": "16", "name": "Altonaer Kinderkrankenhaus – PNZ Schnelsen", "short": "AKK PNZ Schnelsen", "id": 773692, "x": 275.4, "y": 267.6, "lg": {"LG43": 158, "LG45": 5}, "sp": "Neonatologie"}, {"n": "17", "name": "Evangelisches Amalie Sieveking Krankenhaus", "short": "Amalie Sieveking", "id": 772845, "x": 545.4, "y": 219.0, "lg": {"LG04": 1975, "LG11": 1398, "LG23": 126, "LG24": 81, "LG34": 45, "LG39": 709, "LG42": 950, "LG43": 97, "LG53": 47, "LG64": 3}, "sp": "Kardio / Geriatrie / Geburt"}, {"n": "18", "name": "BG Klinikum Hamburg", "short": "BG Klinikum", "id": 771495, "x": 530.0, "y": 492.0, "lg": {"LG23": 41, "LG24": 44, "LG25": 42, "LG26": 47, "LG27": 97, "LG38": 11, "LG53": 359, "LG64": 3}, "sp": "Unfall / Plastische Chirurgie"}, {"n": "19", "name": "Asklepios Westklinikum Hamburg", "short": "AK Westklinikum", "id": 773544, "x": 76.0, "y": 353.0, "lg": {"LG04": 910, "LG11": 817, "LG23": 141, "LG24": 122, "LG38": 963, "LG57": 238, "LG64": 2}, "sp": "Geriatrie / Wirbelsäule / Adipositas"}, {"n": "20", "name": "Evangelisches Krankenhaus Alsterdorf", "short": "EKA Alsterdorf", "id": 771793, "x": 370.1, "y": 303.0, "lg": {"LG23": 300, "LG24": 300, "LG53": 2001, "LG64": 1}, "sp": "Neurologie / Geriatrie"}, {"n": "22", "name": "Agaplesion Bethesda Krankenhaus Bergedorf", "short": "Bethesda Bergedorf", "id": 772680, "x": 616.1, "y": 539.0, "lg": {"LG04": 1007, "LG11": 720, "LG39": 552, "LG42": 524, "LG43": 24, "LG53": 1680, "LG54": 988, "LG64": 3}, "sp": "Neuro / Stroke / Geriatrie"}, {"n": "23", "name": "Israelitisches Krankenhaus", "short": "Israelitisches KH", "id": 773032, "x": 356.5, "y": 318.0, "lg": {"LG04": 3922, "LG31": 19, "LG32": 70, "LG33": 84, "LG34": 100, "LG57": 326, "LG64": 3}, "sp": "Viszeral"}, {"n": "24", "name": "Kath. Kinderkrankenhaus Wilhelmstift – Hauptstandort", "short": "Wilhelmstift", "id": 771668, "x": 541.8, "y": 312.0, "lg": {"LG43": 350, "LG64": 1}, "sp": "Kinderklinik"}, {"n": "24", "name": "Kath. KiKH Wilhelmstift – Epilepsie Alsterdorf", "short": "Wilhelmstift Epilepsie", "id": 771672, "x": 371.7, "y": 301.2, "lg": {}, "sp": "Kinder-Epileptologie"}, {"n": "24", "name": "Kath. KiKH Wilhelmstift – Neo AK Wandsbek", "short": "Wilhelmstift Neo AKWan", "id": 771671, "x": 460.8, "y": 364.8, "lg": {"LG43": 107}, "sp": "Neonatologie"}, {"n": "24", "name": "Kath. KiKH Wilhelmstift – Neo Marienkrankenhaus", "short": "Wilhelmstift Neo MarienKH", "id": 771670, "x": 394.7, "y": 393.8, "lg": {"LG43": 148, "LG44": 18, "LG45": 20}, "sp": "Neonatologie"}, {"n": "26", "name": "Agaplesion Diakonieklinikum Hamburg", "short": "Agaplesion", "id": 772836, "x": 314.9, "y": 371.0, "lg": {"LG04": 1545, "LG34": 42, "LG39": 1354, "LG40": 36, "LG41": 472, "LG42": 1177, "LG43": 122, "LG57": 114, "LG64": 3}, "sp": "Gyn / Brustzentrum"}, {"n": "27", "name": "Krankenhaus Jerusalem", "short": "KH Jerusalem", "id": 772063, "x": 325.0, "y": 377.4, "lg": {"LG39": 836, "LG41": 1469}, "sp": "Brustzentrum / Frauenheilkunde"}, {"n": "28", "name": "Helios Mariahilf Klinik Hamburg", "short": "Helios Mariahilf", "id": 773111, "x": 291.1, "y": 589.0, "lg": {"LG23": 84, "LG24": 136, "LG39": 2242, "LG41": 223, "LG42": 1606, "LG43": 323, "LG45": 5, "LG64": 1}, "sp": "Geburt / Gyn / Kinder"}, {"n": "29", "name": "Krankenhaus Tabea", "short": "KH Tabea", "id": 772380, "x": 116.4, "y": 392.0, "lg": {"LG23": 806, "LG24": 644, "LG25": 107, "LG26": 78, "LG64": 1}, "sp": "Ortho / Endoprothetik / Wirbelsäule"}, {"n": "30", "name": "Katholisches Marienkrankenhaus", "short": "Marienkrankenhaus", "id": 772533, "x": 393.3, "y": 392.0, "lg": {"LG04": 720, "LG06": 903, "LG11": 809, "LG33": 29, "LG34": 25, "LG38": 2481, "LG39": 2643, "LG40": 30, "LG41": 149, "LG42": 3188, "LG43": 450, "LG53": 945, "LG54": 693, "LG57": 330, "LG64": 3}, "sp": "Gyn / Geburt / HNO / Urologie"}, {"n": "31", "name": "Facharztklinik Hamburg", "short": "Facharztklinik", "id": 772159, "x": 332.7, "y": 344.0, "lg": {"LG23": 202, "LG24": 300}, "sp": "HNO / Ortho (Belegklinik)"}, {"n": "34", "name": "Helios ENDO-Klinik Hamburg", "short": "ENDO-Klinik", "id": 771358, "x": 297.7, "y": 411.0, "lg": {"LG23": 2449, "LG24": 2526, "LG25": 518, "LG26": 493, "LG64": 1}, "sp": "Endoprothetik"}, {"n": "52", "name": "ATOS Klinik Fleetinsel Hamburg", "short": "ATOS Fleetinsel", "id": 773453, "x": 338.1, "y": 423.0, "lg": {"LG23": 101, "LG24": 143}, "sp": "Ortho / Wirbelsäule"}, {"n": "53", "name": "Praxis-Klinik Bergedorf", "short": "Praxis-Klinik Bergedorf", "id": 771913, "x": 608.4, "y": 542.0, "lg": {"LG23": 61, "LG24": 115}, "sp": "Ortho / Wirbelsäule"}, {"n": "97", "name": "SKH Stadtteilklinik Hamburg", "short": "SKH Stadtteilklinik", "id": 773426, "x": 528.8, "y": 463.0, "lg": {}, "sp": "Innere Grundversorgung"}], "lgs": [{"c": "LG04", "t": "Komplexe Gastroenterologie", "g": "inn"}, {"c": "LG05", "t": "Komplexe Nephrologie", "g": "inn"}, {"c": "LG06", "t": "Komplexe Pneumologie", "g": "inn"}, {"c": "LG09", "t": "Leukämie und Lymphome", "g": "inn"}, {"c": "LG11", "t": "Interventionelle Kardiologie", "g": "inn"}, {"c": "LG23", "t": "Endoprothetik Hüfte", "g": "ort"}, {"c": "LG24", "t": "Endoprothetik Knie", "g": "ort"}, {"c": "LG25", "t": "Revision Hüftendoprothese", "g": "ort"}, {"c": "LG26", "t": "Revision Knieendoprothese", "g": "ort"}, {"c": "LG27", "t": "Spezielle Traumatologie", "g": "ort"}, {"c": "LG29", "t": "Thoraxchirurgie", "g": "vis"}, {"c": "LG31", "t": "Lebereingriffe", "g": "vis"}, {"c": "LG32", "t": "Ösophaguseingriffe", "g": "vis"}, {"c": "LG33", "t": "Pankreaseingriffe", "g": "vis"}, {"c": "LG34", "t": "Tiefe Rektumeingriffe", "g": "vis"}, {"c": "LG35", "t": "Augenheilkunde", "g": "son"}, {"c": "LG38", "t": "Urologie", "g": "son"}, {"c": "LG39", "t": "Allgemeine Frauenheilkunde", "g": "gyn"}, {"c": "LG40", "t": "Ovarial-CA", "g": "gyn"}, {"c": "LG41", "t": "Senologie", "g": "gyn"}, {"c": "LG42", "t": "Geburten", "g": "gyn"}, {"c": "LG43", "t": "Perinataler Schwerpunkt", "g": "gyn"}, {"c": "LG44", "t": "Perinatalzentrum Level 1", "g": "gyn"}, {"c": "LG45", "t": "Perinatalzentrum Level 2", "g": "gyn"}, {"c": "LG53", "t": "Allgemeine Neurologie", "g": "neu"}, {"c": "LG54", "t": "Stroke Unit", "g": "neu"}, {"c": "LG57", "t": "Palliativmedizin", "g": "son"}, {"c": "LG64", "t": "Intensivmedizin", "g": "icu"}]};
+const GN={inn:"Innere Medizin",ort:"Orthopädie und Unfallchirurgie",vis:"Viszeral- und Thoraxchirurgie",son:"Weitere Fächer",gyn:"Frauenheilkunde und Geburtshilfe",neu:"Neurologie",icu:"Intensivmedizin"};
+const ICU={3:"M · K · H",2:"M · K",1:"M"};
+const LG=D.lgs, H=D.hos, NL=LG.length;
+const ORD=["inn","ort","vis","gyn","neu","son","icu"];
+const sorted=[...LG].sort((a,b)=>ORD.indexOf(a.g)-ORD.indexOf(b.g));
+const fmt=n=>n.toLocaleString("de-DE");
+const cnt=h=>Object.keys(h.lg).length;
+const isMe=h=>h.id===772584;
+const sub=h=>/Neo|PNZ|Epilep/.test(h.short)?1:0;
+const max={};LG.forEach(l=>max[l.c]=Math.max(...H.map(h=>h.lg[l.c]||0)));
+const val=(h,c)=>c==="LG64"?(h.lg[c]?ICU[h.lg[c]]:""):fmt(h.lg[c]);
+const esc=s=>String(s).replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+let selH=H.find(isMe), selL="", hover=null;
+const svg=document.getElementById("map"), fig=document.getElementById("fig");
+const HOME={x:-25,y:185,w:770,h:450}; let vb={...HOME};
+
+/* select */
+const sel=document.getElementById("lgsel");
+sel.innerHTML=`<option value="">Alle – Anzahl gemeinsamer LG</option>`+ORD.map(g=>`<optgroup label="${GN[g]}">`+sorted.filter(l=>l.g===g).map(l=>`<option value="${l.c}">${l.c} ${l.t}</option>`).join("")+`</optgroup>`).join("");
+
+/* map */
+function draw(){
+  svg.setAttribute("viewBox",`${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+  const r=fig.clientWidth?vb.w/fig.clientWidth:1; // units per px
+  const G=D.geo;
+  let s=`<rect x="-400" y="-400" width="1600" height="1600" fill="var(--bg)"/>`;
+  s+=`<path d="${G.hh}" fill="var(--land)" stroke="var(--off)" stroke-width="${1.2*r}"/>`;
+  s+=G.elbe.map(d=>`<path d="${d}" fill="none" stroke="var(--water)" stroke-width="${Math.max(5,9*r)}" stroke-linecap="round" stroke-linejoin="round"/>`).join("");
+  s+=`<path d="${G.alster}" fill="none" stroke="var(--water)" stroke-width="${2.2*r}" stroke-linecap="round"/><path d="${G.aussen}" fill="var(--water)"/><path d="${G.binnen}" fill="var(--water)"/>`;
+  s+=G.places.map(([n,x,y])=>`<text x="${x}" y="${y}" font-size="${12*r}" fill="var(--mut)" font-style="italic" text-anchor="middle" opacity=".8">${n}</text>`).join("");
+  // markers
+  const items=H.map(h=>{
+    const has=selL?!!h.lg[selL]:cnt(h)>0;
+    let rad, label;
+    if(selL){ if(has){const v=selL==="LG64"?h.lg[selL]*400:h.lg[selL]; rad=7+11*Math.sqrt(v/(selL==="LG64"?1200:max[selL])); label=val(h,selL);} else {rad=4;label="";} }
+    else { rad=has?7+cnt(h)*0.42:4; label=has?String(cnt(h)):""; }
+    return {h,has,rad,label};
+  }).sort((a,b)=>b.rad-a.rad);
+  const boxes=[];
+  items.forEach(it=>boxes.push({x0:it.h.x-it.rad*r,y0:it.h.y-it.rad*r,x1:it.h.x+it.rad*r,y1:it.h.y+it.rad*r}));
+  let m="",t="",ln="";
+  items.forEach(({h,has,rad,label})=>{
+    const me=isMe(h), on=selH===h, fill=me?"var(--acc)":has?"var(--dot)":"var(--off)";
+    m+=`<g class="mk" data-id="${h.id}" style="cursor:pointer"><circle cx="${h.x}" cy="${h.y}" r="${(rad+(on?4:0))*r}" fill="${on?"none":"transparent"}" stroke="${on?"var(--acc)":"none"}" stroke-width="${2*r}"/><circle cx="${h.x}" cy="${h.y}" r="${rad*r}" fill="${fill}" stroke="var(--land)" stroke-width="${1.5*r}"/>`+
+      (label&&!selL?`<text x="${h.x}" y="${h.y}" dy=".35em" text-anchor="middle" font-size="${Math.min(12,rad*1.1)*r}" font-weight="600" fill="${me?"#fff":"var(--dotink)"}" pointer-events="none">${label}</text>`:"")+`</g>`;
+  });
+  // labels with greedy collision avoidance
+  const fs=11.5*r, cw=6.4*r;
+  const bb=svg.getBoundingClientRect(), kk=Math.max(vb.w/(bb.width||1),vb.h/(bb.height||1));
+  const V={x0:vb.x-((bb.width||0)*kk-vb.w)/2+4*r,y0:vb.y-((bb.height||0)*kk-vb.h)/2+4*r}; V.x1=V.x0+(bb.width||0)*kk-8*r; V.y1=V.y0+(bb.height||0)*kk-8*r;
+  const inV=b=>!bb.width||(b.x0>=V.x0&&b.x1<=V.x1&&b.y0>=V.y0&&b.y1<=V.y1);
+  const order=[...items].sort((a,b)=>(isMe(b.h)-isMe(a.h))||((selH===b.h)-(selH===a.h))||((hover===b.h)-(hover===a.h))||(b.has-a.has)||(sub(a.h)-sub(b.h))||(selL?b.rad-a.rad:cnt(a.h)-cnt(b.h)));
+  order.forEach(({h,has,rad,label})=>{
+    if(!has&&selH!==h&&hover!==h) return;
+    const txt=h.short+(selL&&label?" · "+label:"");
+    const sp=h.sp&&!isMe(h)?h.sp:"", fs2=10*r;
+    const w=Math.max(txt.length*cw,sp.length*5.4*r), ht=fs*1.25+(sp?fs2*1.2:0), off=(rad+3)*r;
+    const d=off*0.7, cands=[[h.x+off,h.y-ht/2,"start"],[h.x-off-w,h.y-ht/2,"end"],[h.x-w/2,h.y-off-ht,"middle"],[h.x-w/2,h.y+off,"middle"],
+      [h.x+d,h.y-d-ht,"start"],[h.x+d,h.y+d,"start"],[h.x-d-w,h.y-d-ht,"end"],[h.x-d-w,h.y+d,"end"],
+      [h.x+off,h.y-ht*1.3,"start"],[h.x+off,h.y+ht*0.3,"start"],[h.x-off-w,h.y-ht*1.3,"end"],[h.x-off-w,h.y+ht*0.3,"end"]];
+    const L=34*r; [[-1,-1],[1,-1],[-1,1],[1,1],[-1,0],[1,0],[0,-1],[0,1]].forEach(([dx,dy])=>{for(const k of [1,1.8,2.6]){const ax=h.x+dx*L*k, ay=h.y+dy*L*k*0.8;
+      cands.push([dx<0?ax-w:dx>0?ax:ax-w/2, dy<0?ay-ht:dy>0?ay:ay-ht/2, dx<0?"end":dx>0?"start":"middle", ax, ay]);}});
+    const force=isMe(h)||selH===h||hover===h;
+    for(const [x0,y0,a,lx,ly] of cands){
+      const b={x0,y0,x1:x0+w,y1:y0+ht};
+      const hit=boxes.some(o=>!(b.x1<o.x0||b.x0>o.x1||b.y1<o.y0||b.y0>o.y1));
+      if((!hit&&inV(b))||(force&&inV(b))){
+        boxes.push(b);
+        const tx=a==="start"?x0:a==="end"?x0+w:x0+w/2;
+        if(lx!=null) ln+=`<line x1="${h.x}" y1="${h.y}" x2="${lx}" y2="${ly}" stroke="var(--mut)" stroke-width="${0.8*r}" pointer-events="none"/>`;
+        t+=`<text x="${tx}" y="${y0+fs}" text-anchor="${a}" font-size="${fs}" font-weight="${force?600:500}" fill="${isMe(h)?"var(--acc)":"var(--ink)"}" stroke="var(--land)" stroke-width="${3*r}" paint-order="stroke" pointer-events="none">${esc(txt)}`+(sp?`<tspan x="${tx}" dy="${fs2*1.2}" font-size="${fs2}" font-weight="400" fill="var(--mut)" font-style="italic">${esc(sp)}</tspan>`:"")+`</text>`;
+        break;
+      }
+    }
+  });
+  svg.innerHTML=s+ln+m+t;
+}
+const legend=document.getElementById("legend");
+function drawLegend(){
+  legend.innerHTML=selL?`<span><i></i>Fläche ∝ Fallzahl in ${selL}</span><span><i class="o"></i>Asklepios Klinik Barmbek</span><span><i class="g"></i>nicht zugewiesen</span>`
+  :`<span><i></i>Zahl im Kreis = gemeinsame LG mit Barmbek (max. ${NL})</span><span><i class="o"></i>Asklepios Klinik Barmbek</span><span><i class="g"></i>keine dieser LG</span>`;
+}
+
+/* panel */
+const panel=document.getElementById("panel");
+function hospitalPanel(h){
+  const n=cnt(h);
+  let s=`<h2>${esc(h.name)}</h2><p class="sub">${h.sp&&!isMe(h)?`Schwerpunkt: <b style="color:var(--ink);font-weight:500">${esc(h.sp)}</b><br>`:""}Standort-ID ${h.id} · ${n} von ${NL} Barmbek-Leistungsgruppen</p>`;
+  ORD.forEach(g=>{
+    const ls=sorted.filter(l=>l.g===g&&h.lg[l.c]);
+    if(!ls.length) return;
+    s+=`<div class="grp">${GN[g]}</div>`+ls.map(l=>`<div class="row click" data-lg="${l.c}"><code>${l.c}</code><div>${l.t}${l.c!=="LG64"?`<div class="bar"><span style="width:${(100*h.lg[l.c]/max[l.c]).toFixed(1)}%"></span></div>`:""}</div><div class="n">${val(h,l.c)}</div></div>`).join("");
+  });
+  const miss=sorted.filter(l=>!h.lg[l.c]);
+  if(miss.length&&miss.length<NL) s+=`<div class="miss">Nicht zugewiesen: `+miss.map(l=>`<code title="${l.t}">${l.c}</code>`).join("")+`</div>`;
+  if(!n) s+=`<p class="miss">Dieser Standort hat keine der Barmbek-Leistungsgruppen.</p>`;
+  s+=`<p class="hint">Balken = Anteil am größten Hamburger Standort in dieser LG. Eine Zeile anklicken, um die LG auf der Karte zu zeigen.</p>`;
+  return s;
+}
+function lgPanel(c){
+  const l=LG.find(x=>x.c===c);
+  const hs=H.filter(h=>h.lg[c]).sort((a,b)=>(b.lg[c]-a.lg[c]));
+  const tot=hs.reduce((s,h)=>s+h.lg[c],0);
+  let s=`<h2>${c} ${l.t}</h2><p class="sub">${hs.length} Standorte`+(c!=="LG64"?` · ${fmt(tot)} Fälle in Hamburg`:"")+`</p>`;
+  s+=hs.map(h=>`<div class="row click${isMe(h)?" me":""}" data-id="${h.id}"><code>${h.n}</code><div>${esc(h.short)}${c!=="LG64"?`<div class="bar"><span style="width:${(100*h.lg[c]/max[c]).toFixed(1)}%"></span></div>`:""}</div><div class="n">${val(h,c)}</div></div>`).join("");
+  if(c!=="LG64"){const me=H.find(isMe);s+=`<p class="hint">Barmbek-Anteil: ${(100*me.lg[c]/tot).toFixed(1).replace(".",",")} % der Hamburger Fälle in dieser LG.</p>`;}
+  return s;
+}
+function render(){ panel.innerHTML=selL?lgPanel(selL):hospitalPanel(selH); draw(); drawLegend(); hl(); }
+panel.addEventListener("click",e=>{const r=e.target.closest(".row.click"); if(!r) return;
+  if(r.dataset.lg){selL=r.dataset.lg;sel.value=selL;} else {selH=H.find(h=>h.id==r.dataset.id);selL="";sel.value="";}
+  render();});
+sel.addEventListener("change",()=>{selL=sel.value;render();});
+document.getElementById("reset").addEventListener("click",()=>{selL="";sel.value="";selH=H.find(isMe);vb={...HOME};render();});
+
+/* matrix */
+const mx=document.getElementById("mx");
+const rows=[...H].sort((a,b)=>isMe(b)-isMe(a)||cnt(b)-cnt(a)||a.n.localeCompare(b.n));
+let th=`<thead><tr><th class="h" style="vertical-align:bottom">Standort</th><th style="vertical-align:bottom;padding:0 10px 6px">LG</th>`;
+let prev="";sorted.forEach(l=>{th+=`<th class="r ${l.g!==prev?"gs":""}" title="${l.t}"><div><span><b>${l.c}</b> ${l.t}</span></div></th>`;prev=l.g;});
+th+=`</tr></thead>`;
+let tb=`<tbody>`+rows.map(h=>{let p="";return `<tr class="${isMe(h)?"me":""}" data-id="${h.id}" tabindex="0"><td class="h">${h.n} ${esc(h.short)}${h.sp&&!isMe(h)?`<br><span style="color:var(--mut);font-size:12px;font-style:italic">${esc(h.sp)}</span>`:""}</td><td class="k">${cnt(h)}</td>`+sorted.map(l=>{const v=h.lg[l.c];const gs=l.g!==p?"gs":"";p=l.g;
+  if(!v) return `<td class="c ${gs}"></td>`;
+  if(l.c==="LG64") return `<td class="c ${gs}" title="${esc(h.short)}: Intensivmedizin ${ICU[v]}"><i class="icu">${["","M","MK","MKH"][v]}</i></td>`;
+  return `<td class="c ${gs}" title="${esc(h.short)} – ${l.c} ${l.t}: ${fmt(v)} Fälle"><i style="opacity:${(0.35+0.65*Math.sqrt(v/max[l.c])).toFixed(2)}"></i></td>`;}).join("")+`</tr>`;}).join("")+`</tbody>`;
+mx.innerHTML=th+tb;
+const pick=id=>{selH=H.find(h=>h.id==id);selL="";sel.value="";render();document.getElementById("panel").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"nearest"});};
+mx.addEventListener("click",e=>{const tr=e.target.closest("tbody tr");if(tr)pick(tr.dataset.id);});
+mx.addEventListener("keydown",e=>{if(e.key==="Enter"){const tr=e.target.closest("tbody tr");if(tr)pick(tr.dataset.id);}});
+function hl(){mx.querySelectorAll("tbody tr").forEach(tr=>tr.style.boxShadow=selH&&tr.dataset.id==selH.id&&!selL?"inset 4px 0 0 var(--acc)":"");}
+
+/* map interaction: click, hover, pan, zoom */
+let drag=null, moved=false;
+const toSvg=(cx,cy)=>{const b=svg.getBoundingClientRect();const k=Math.max(vb.w/b.width,vb.h/b.height);const ox=(b.width*k-vb.w)/2,oy=(b.height*k-vb.h)/2;return {x:vb.x-ox+(cx-b.left)*k,y:vb.y-oy+(cy-b.top)*k,k};};
+function zoom(f,cx,cy){const b=svg.getBoundingClientRect();if(cx==null){cx=b.left+b.width/2;cy=b.top+b.height/2;}
+  const p=toSvg(cx,cy);const nw=Math.min(900,Math.max(60,vb.w*f));const nf=nw/vb.w;
+  vb={x:p.x-(p.x-vb.x)*nf,y:p.y-(p.y-vb.y)*nf,w:nw,h:vb.h*nf};draw();}
+document.getElementById("zin").addEventListener("click",()=>zoom(1/1.5));
+document.getElementById("zout").addEventListener("click",()=>zoom(1.5));
+fig.addEventListener("wheel",e=>{e.preventDefault();zoom(e.deltaY>0?1.2:1/1.2,e.clientX,e.clientY);},{passive:false});
+fig.addEventListener("pointerdown",e=>{if(e.target.closest(".zoom"))return;drag={x:e.clientX,y:e.clientY,vb:{...vb}};moved=false;});
+window.addEventListener("pointermove",e=>{
+  if(drag){const k=toSvg(0,0).k;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>4)moved=true;if(moved){vb={...drag.vb,x:drag.vb.x-dx*k,y:drag.vb.y-dy*k};fig.style.cursor="grabbing";draw();}return;}
+  const g=e.target.closest&&e.target.closest(".mk");const h=g?H.find(x=>x.id==g.dataset.id):null;
+  if(h!==hover){hover=h;draw();}
+});
+window.addEventListener("pointerup",e=>{if(drag&&!moved){const g=e.target.closest&&e.target.closest(".mk");if(g){selH=H.find(x=>x.id==g.dataset.id);selL="";sel.value="";render();}}drag=null;fig.style.cursor="";});
+const ro=new ResizeObserver(draw);ro.observe(fig);
+render();
+}
+</script>
+</body>
+</html>
